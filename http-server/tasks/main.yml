@@ -1,0 +1,28 @@
+---
+# tasks file for http-server
+- name: http server configs
+  hosts: all
+  tasks:
+  - name: install http packages
+    yum:
+      name: httpd
+      state: present  
+
+  - name: copy index file
+    copy:
+      src: ../files/index.html
+      dest: /var/www/html
+
+  - name: Ensure http is running    
+    service:
+      name: httpd
+      state: started
+  - name: Allow http 80 port
+    firewalld:
+      service: http
+      permanent: true
+      state: enabled
+  - name: Restart firewall
+    service:
+      name: firewalld
+      state: restarted

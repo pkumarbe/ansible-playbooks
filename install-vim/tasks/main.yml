@@ -1,11 +1,12 @@
 ---
 # tasks file for self-p-packageinstal
-- hosts: 192.168.1.192
-  become: true
+- name: install vim
+  hosts: all
 # connection: local
 # gather_fatcs: false
   tasks:
    - name: install vim
      yum:
-       name: vim
-       state: absent
+      name: vim
+      state: present
+     register: vim-installed
