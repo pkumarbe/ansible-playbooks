@@ -1,0 +1,5 @@
+---
+# vars file for virt-manage-playbook
+base_packages:
+  - telnet
+ 

@@ -1,0 +1,12 @@
+---
+# tasks file for virt-manage-playbook
+- name: playbook for libvirt
+  hosts: all
+  pre_tasks:
+    - include_vars: "../group_vars/all/vars.yaml"
+  tasks:
+    - name: Install required packages
+      yum: 
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ base_packages }}"
