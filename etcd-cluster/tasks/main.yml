@@ -1,0 +1,22 @@
+---
+# tasks file for etcd-cluster
+- name: Play books for etcd-cluster
+  host: [all]
+  pre_tasks:
+   - include_vars: "../group_vars/all/vars.yaml"
+  tasks:
+  - name: Install packgaes
+     yum:
+       name: "{{ items }}"
+       state: present
+     with_items: "{{ etcd-require-packge }}"
+  - name: start and enable services
+      service:
+        name: "{{ items }}"
+        state: restarted
+      with_items: " {{ etcd-require-packge }} "
+  - name: add resolv.conf
+      copy:
+        src: ../files/hosts 
+        dest: /etc/hosts
+

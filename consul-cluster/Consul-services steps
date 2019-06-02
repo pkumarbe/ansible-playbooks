@@ -1,0 +1,30 @@
+Consul-services steps
+----------------------
+Below is a setup for single node consul server with 3 node client.
+
+1. install consul rpm
+	wget https://releases.hashicorp.com/consul/1.5.1/consul_1.5.1_linux_amd64.zip
+	yum install unzip
+	unzip consul_1.5.1_linux_amd64.zip 
+	mv consul /bin/
+ --> Create below directories on all servers
+
+	# mkdir /var/lib/consul
+	# mkdir /etc/consul.d
+
+2. Bootstarp from a node and make as server that one.
+	# consul agent --server --bootstrap-expect 1 --data-dir /var/lib/consul/  --config-dir /etc/cosul.d -enable-script-checks  -bind=<Server IP> -client=<Server IP> -ui
+	* -ui for enable internal gui.
+3. From other nodes who all will be join as client...
+	
+	-> Make the cosule server run first before join into the cluster..
+	# consul agent -data-dir /var/lib/consul/ -config-dir /etc/consul.d -enable-script-checks -bind=<Own IP/192.168.1.83>	&
+	# consul join <Server IP/192.168.1.192>
+
+4. After join all..
+	
+	# consul members
+		Node       Address             Status  Type    Build  Protocol  DC   Segment
+		consul-01  192.168.1.192:8301  alive   server  1.5.1  2         dc1  <all>
+		consul-02  192.168.1.83:8301   alive   client  1.5.1  2         dc1  <default>
+		consul-03  192.168.1.208:8301  alive   client  1.5.1  2         dc1  <default>

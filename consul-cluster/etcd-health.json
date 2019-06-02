@@ -1,0 +1,15 @@
+{
+ "services":[
+  {
+  "name": "etcd service check",
+  "port": 2379,
+  "tags": [ "etcd" ],
+  "check": {
+    "name": "etcd server health check",
+    "notes": "Check service in every 10s",
+    "args": [ "curl", "http://127.0.0.1:2379/health" ],
+    "interval": "10s"
+   }
+  }
+ ]
+}

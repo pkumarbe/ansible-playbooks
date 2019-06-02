@@ -1,0 +1,4 @@
+---
+etcd-require-packges:
+  - telnet
+  - etcd

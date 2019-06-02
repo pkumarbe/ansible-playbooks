@@ -2,4 +2,15 @@
 # vars file for virt-manage-playbook
 base_packages:
   - telnet
- 
+  - net-tools
+  - bind-utils
+  - libguestfs-xfs
+  - virt-install
+  - libvirt-devel
+  - libvirt
+  - gcc
+  - libguestfs-tools
+  - qemu-img
+  - qemu-kvm
+  - python-pip
+  - python-devel

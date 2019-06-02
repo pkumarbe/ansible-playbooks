@@ -1,0 +1,22 @@
+---
+# tasks file for consul-cluster
+- name: Play for consul 3 node cluster
+  hosts: all
+  pre_tasks:
+    include_vars: "../group_vars/all/vars.yaml"
+  task:
+    - name: Install packages;
+    - name: Consul | Download and extract Consul
+        unarchive:
+          src: "{{ consul_url }}"
+          dest: "{{ consul_bindir }}"
+          owner: "{{ consul_user }}"
+          group: "{{ consul_group }}"
+          remote_src: yes
+        notify: restart consul
+
+    - name: Consul | Link binary
+      file:
+        src: "{{ consul_bindir }}/consul"
+        dest: /usr/bin/consul
+        state: link  

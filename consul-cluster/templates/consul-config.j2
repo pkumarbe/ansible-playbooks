@@ -1,0 +1,31 @@
+{
+     "advertise_addr": "{{ consul-ip }}",
+     "bind_addr": "{{ consul-ip }}",
+     "bootstrap_expect": 3,
+     "client_addr": "0.0.0.0",
+     "datacenter": "DC1",
+     "data_dir": "/var/lib/consul",
+     "domain": "consul",
+     "enable_script_checks": true,
+     "dns_config": {
+         "enable_truncate": true,
+         "only_passing": true
+     },
+     "enable_syslog": true,
+     "encrypt": "pzDVYxESgPSkPhBFudHU5w==",
+     "leave_on_terminate": true,
+     "log_level": "INFO",
+     "rejoin_after_leave": true,
+     "retry_join": [
+         "consul-01",
+         "consul-02",
+         "consul-03"
+     ],
+     "server": true,
+     "start_join": [
+         "consul-01",
+         "consul-02",
+         "consul-03"
+     ],
+     "ui": true
+ }

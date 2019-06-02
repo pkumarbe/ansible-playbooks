@@ -1,0 +1,6 @@
+[all]
+
+192.168.1.192 consul-ip=192.168.1.192 consul-name=consul-01
+192.168.1.208 consul-ip=192.168.1.208 consul-name=consul-02
+192.168.1.83  consul-ip=192.168.1.83  consul-name=consul-03
+
